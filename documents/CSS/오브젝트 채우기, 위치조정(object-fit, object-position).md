@@ -6,7 +6,7 @@
 
 > `object-fit` 속성은 대체되는 요소의 내용(< img >, < video >, < object >, < svg > 등과 같은)이 지정된 너비와 높이에 맞게 장착되는 방식을 지정한다(CSS3 `background-size` 속성과 매우 유사하다).
 
-##### object-fit 속성 값
+#### object-fit 속성 값
 
 * **fill**: 요소를 가득 채울 수 있는 크기로 변화되면서 종횡비는 유지되지 않는다. 일반적으로 이미지에 강제로 너비와 높이를 지정하는 것과 같다.
 * **contain**: 내용이 종횡비를 유지하면서 요소에 정의된 너비와 높이안에서 가능한한 많이 확대(scale up)시킨다.
@@ -26,7 +26,7 @@
 
 > `object-fit` 속성은 기본적으로 요소의 가운데로 화상을 이동시킨다. 이 위치를 원하는 값으로 변경하는 것이 `object-position` 속성이다.
 
-##### object-position 속성 값
+#### object-position 속성 값
 
 * 기본값은 50%, 50% 이다.
 * 숫자형 px, em, % 등이 사용되며, 키워드 top, left, right, bottom 이 사용될 수 있다.
