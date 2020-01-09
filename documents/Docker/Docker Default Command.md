@@ -4,15 +4,13 @@
 
 
 
-#### 이미지 검색 (search)
-
-<img src="C:\Users\Ymin\AppData\Roaming\Typora\typora-user-images\image-20200109111452047.png" alt="image-20200109111452047"  />
+### 이미지 검색 (search)
 
 `docker search` 명령어로 Docker Hub에 있는 이미지를 검색 할 수 있다. 
 
 
 
-#### 이미지 받기(pull)
+### 이미지 받기(pull)
 
 `docker pull &lt;이미지 이름&gt;:&lt;태그&gt;` 형식으로 사용 가능하다. 태그 부분에 **latest** 를 설정하면 최신 버전으로 받는다.
 
@@ -20,13 +18,13 @@
 
 
 
-#### 이미지 목록 출력하기(images)
+### 이미지 목록 출력하기(images)
 
 `docker images`명령은 다운받은 모든 이미지를 출력한다. `docker images tomcat`을 실행하면 이름은 같지만 태그가 다른 이미지를 출력하게 된다.
 
 
 
-#### 컨테이너 생성하기(run)
+### 컨테이너 생성하기(run)
 
 ```shell
 C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
@@ -41,7 +39,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 
 
-#### 컨테이너 목록 확인하기(ps)
+### 컨테이너 목록 확인하기(ps)
 
 `docker ps` 명령어로 현재 실행중인 컨테이너를 확인 할 수 있다. 
 
@@ -49,7 +47,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 
 
-#### 컨테이너 실행하기(start)
+### 컨테이너 실행하기(start)
 
 `docker start &lt;컨테이너 이름&gt;` 으로 컨테이너 실행이 가능하다.
 
@@ -57,7 +55,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 
 
-#### 컨테이너 재시작하기(restart)
+### 컨테이너 재시작하기(restart)
 
 `docker restart &lt;컨테이너 이름&gt;` 으로 컨테이를 재시작 할 수 있다.
 
@@ -65,7 +63,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 
 
-#### 컨테이너 중지(stop)
+### 컨테이너 중지(stop)
 
 `docker stop &lt;컨테이너 이름&gt;`  으로 실행중인 컨테이너를 중시 시킬 수 있다.
 
@@ -73,7 +71,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 
 
-#### 컨테이너에 접속하기(attach)
+### 컨테이너에 접속하기(attach)
 
 `docker attach &lt;컨테이너 이름&gt;` 으로 실행중인 컨테이너에 접속 할 수 있다.
 
@@ -83,7 +81,7 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 
 
-#### 외부에서 컨테이너 안의 명령 사용하기(exec)
+### 외부에서 컨테이너 안의 명령 사용하기(exec)
 
 `docker exec &lt;컨테이너 이름&gt; &lt;명령&gt; &lt;매개 변수&gt;` 형식으로 사용 가능하다.
 
@@ -91,7 +89,7 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 
 
-#### 컨테이너 삭제하기(rm)
+### 컨테이너 삭제하기(rm)
 
 `docker rm &lt;컨테이너 이름&gt;` 으로 컨테이너를 삭제 할 수 있다.
 
@@ -99,7 +97,7 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 
 
-#### 이미지 삭제하기(rmi)
+### 이미지 삭제하기(rmi)
 
 `docker rmi &lt;이미지 이름&gt;:&lt;태그&gt;` 으로 이미지를 삭제 할 수 있다.
 
