@@ -1,6 +1,6 @@
 # Docker 기본 명령어 정리
 
-> 도커의 명령어는 기본적으로 `docker &lt;명령&gt;` 형식이며 항상 **root** 권한으로 실행되어야 한다
+> 도커의 명령어는 기본적으로 `docker <명령>` 형식이며 항상 **root** 권한으로 실행되어야 한다
 
 
 
@@ -12,7 +12,7 @@
 
 ### 이미지 받기(pull)
 
-`docker pull &lt;이미지 이름&gt;:&lt;태그&gt;` 형식으로 사용 가능하다. 태그 부분에 **latest** 를 설정하면 최신 버전으로 받는다.
+`docker pull <이미지 이름>:<태그>` 형식으로 사용 가능하다. 태그 부분에 **latest** 를 설정하면 최신 버전으로 받는다.
 
 이미지 이름에서 ymin/tomcat 같이 /앞에 사용자 명이 붙으면 Docker Hub에서 해당 사용자가 만든 이미지를 받게 된다(공식 이미지엔 사용자명이 붙지 않는다).
 
@@ -30,7 +30,7 @@
 C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 ```
 
-`docker run &lt;옵션&gt; &lt;이미지 이름&gt; &lt;실행할 파일&gt; `  형식으로 사용 가능하다.
+`docker run <옵션> <이미지 이름> <실행할 파일> `  형식으로 사용 가능하다.
 
 위 코드를 실행하면 8.1태그가 달린 tomcat 이미지를 컨테이너로 생성하고 tomcat 이미지 안의 /bin/bash를 실행하게 된다. 
 
@@ -49,7 +49,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 ### 컨테이너 실행하기(start)
 
-`docker start &lt;컨테이너 이름&gt;` 으로 컨테이너 실행이 가능하다.
+`docker start <컨테이너 이름>` 으로 컨테이너 실행이 가능하다.
 
 컨테이너 ID를 사용해도 된다. 
 
@@ -57,7 +57,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 ### 컨테이너 재시작하기(restart)
 
-`docker restart &lt;컨테이너 이름&gt;` 으로 컨테이를 재시작 할 수 있다.
+`docker restart <컨테이너 이름>` 으로 컨테이를 재시작 할 수 있다.
 
 컨테이너 ID를 사용해도 된다.
 
@@ -65,7 +65,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 ### 컨테이너 중지(stop)
 
-`docker stop &lt;컨테이너 이름&gt;`  으로 실행중인 컨테이너를 중시 시킬 수 있다.
+`docker stop <컨테이너 이름>`  으로 실행중인 컨테이너를 중시 시킬 수 있다.
 
 컨테이너 ID를 사용해도 된다.
 
@@ -73,7 +73,7 @@ C:\Users\Ymin>docker run -i -t --name "test" tomcat:8.1 /bin/bash
 
 ### 컨테이너에 접속하기(attach)
 
-`docker attach &lt;컨테이너 이름&gt;` 으로 실행중인 컨테이너에 접속 할 수 있다.
+`docker attach <컨테이너 이름>` 으로 실행중인 컨테이너에 접속 할 수 있다.
 
 컨테이너 ID를 사용해도 된다.
 
@@ -83,7 +83,7 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 ### 외부에서 컨테이너 안의 명령 사용하기(exec)
 
-`docker exec &lt;컨테이너 이름&gt; &lt;명령&gt; &lt;매개 변수&gt;` 형식으로 사용 가능하다.
+`docker exec <컨테이너 이름> <명령> <매개 변수>` 형식으로 사용 가능하다.
 
 컨테이너 ID를 사용해도 된다. 실행중인 컨테이너 대상으로만 사용 가능하다.
 
@@ -91,7 +91,7 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 ### 컨테이너 삭제하기(rm)
 
-`docker rm &lt;컨테이너 이름&gt;` 으로 컨테이너를 삭제 할 수 있다.
+`docker rm <컨테이너 이름>` 으로 컨테이너를 삭제 할 수 있다.
 
 컨테이너 ID를 사용해도 된다.
 
@@ -99,6 +99,6 @@ bash 셸에서 exit 또는 ctrl+D를 입력하면 컨테이너가 정지된다. 
 
 ### 이미지 삭제하기(rmi)
 
-`docker rmi &lt;이미지 이름&gt;:&lt;태그&gt;` 으로 이미지를 삭제 할 수 있다.
+`docker rmi <이미지 이름>:<태그>` 으로 이미지를 삭제 할 수 있다.
 
 태그를 생략하게 되면 해당 이미지 이름의 모든 이미지를 삭제하게 된다.
