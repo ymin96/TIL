@@ -4,7 +4,7 @@
 
 ## object-fit 속성
 
-> `object-fit` 속성은 대체되는 요소의 내용(< img >, < video >, < object >, < svg > 등과 같은)이 지정된 너비와 높이에 맞게 장착되는 방식을 지정한다(CSS3 `background-size` 속성과 매우 유사하다).
+> `object-fit` 속성은 대체되는 요소의 내용(&lt;img&gt;, &lt;video&gt;, &lt;object&gt;, &lt;svg&gt; 등과 같은)이 지정된 너비와 높이에 맞게 장착되는 방식을 지정한다(CSS3 `background-size` 속성과 매우 유사하다).
 
 #### object-fit 속성 값
 
