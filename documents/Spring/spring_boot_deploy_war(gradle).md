@@ -70,11 +70,11 @@ build.gradle에 들어가 plugins를 설정해주고 bootWar로 파일 이름 �
 
 ### WAR 파일 생성 
 
-<img src="C:\Users\Ymin\Documents\TIL\documents\img\Spring\war1.PNG" alt="war1" style="zoom: 80%;" />
+<img src="..\img\Spring\war1.PNG" alt="war1" style="zoom: 80%;" />
 
 
 
-<img src="C:\Users\Ymin\Documents\TIL\documents\img\Spring\war2.PNG" alt="war2" style="zoom: 80%;" />
+<img src="..\img\Spring\war2.PNG" alt="war2" style="zoom: 80%;" />
 
 
 
