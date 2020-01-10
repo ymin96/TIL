@@ -47,7 +47,7 @@ $ crontab -r
 #### 작업 등록 형식
 
 ``` shell
-*			*			*			*			*		 <실행할 명령어>
+*           *            *           *           *        <실행할 명령어>
 분(0~59)    시간(0~23)   일(1~31)    월(1~12)    요일(0~7)
 ```
 
@@ -57,31 +57,31 @@ $ crontab -r
 
 #### 예시
 
-```shell
+```
 * * * * * /usr/every_1min.sh
 ```
 
 매 1분 마다 /usr/every_1min.sh 를 실행
 
-```shell
+```
 15,45 * * * * /usr/every_30min.sh
 ```
 
 매 시 15분, 45분 마다 /usr/every_30min.sh 를 실행
 
-```shell
+```
 */10 * * * * /usr/every_10min.sh
 ```
 
 10분마다 /usr/every_10min.sh 를 실행
 
-```shell
+```
 0 2 * * * /usr/backup.sh
 ```
 
 매일 2:00 에 /usr/backup.sh 를 실행
 
-```shell
+```
 30 */6 * * * /usr/every_6hours.sh
 ```
 
