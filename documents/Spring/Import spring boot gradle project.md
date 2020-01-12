@@ -4,7 +4,7 @@
 
 
 
-![spring boot1](..\img\Spring\spring_boot1.png)
+<img src="..\img\Spring\spring_boot1.png">
 
 이클립스의 깃 페이지 창으로 들어와 사진에 빨간색으로 보이는 버튼을 눌러준다.
 
