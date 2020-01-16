@@ -114,3 +114,92 @@ $ mkdir -p /def/fgh		-> /def/fgh 디렉터리를 생성하는데, 만약 '/fhg'�
 						   디렉터리가 없다면 자동 생성(p는 Parent의 약자)
 ```
 
+<br>
+
+<br>
+
+ ### rmdir
+
+Remove Driectory 의 약자로 디렉터리를 삭제한다. 해당 디렉터리의 삭제 권한이 있어야 하며, 디렉터리는 비어 있어야 한다. 파일이 들어있는 디렉터리를 삭제하려면 `rm -r`을 실행해야 한다.
+
+```shell
+$ rmdir abc		-> '/abc'디렉터리를 삭제
+```
+
+<br>
+
+<br>
+
+### cat
+
+Concatenate 의 약자로 파일의 내용을 화면에 보여준다. 여러 개 파일을 나열하면 파일을 연결해서 보여준다.
+
+```shell
+$ cat a.txt b.txt		-> a.txt와 b.txt를 연결해서 파일의 내용을 화면에 보여줌
+```
+
+<br>
+
+<br>
+
+### head,tail
+
+텍스트 형식으로 작성된 파일의 앞 10행 또는 마지막 10행만 화면에 출력한다.
+
+```shell
+$ head /etc/systemd/bootchart.conf		-> 해당 파일의 약 10행을 화면에 출력
+$ head -3 /etc/systemd/bootchart.conf		-> 앞 3행만 화면에 출력
+$ tail -5 /etc/systemd/bootchart.conf		-> 마지막 5행만 화면에 출력
+```
+
+<br>
+
+<br>
+
+### more
+
+텍스트 형식으로 작성된 파일을 페이지 단위로 화면에 출력한다. `space bar`를 누르면 다음 페이지로 이동하며, `B`를 누르면 앞 페이지로 이동한다. `Q`를 누르면 종료한다.
+
+```shell
+$ more /etc/systemd/system.conf
+$ more +10 /etc/systemd/system.conf		-> 10행부터 출력	
+```
+
+<br>
+
+<br>
+
+### less
+
+more 명령어와 용도가 비슷하지만 기능이 더 확장되어 있다. more 명령에서 사용하는 키도 사용 할 수 있으며, 추가로 화살표 키나 `page up`, `page down` 키도 사용 가능하다.
+
+```shell
+$ less /etc/systemd/system.conf
+$ less +10 /etc/systemd/system.conf		-> 10행부터 출력	
+```
+
+<br>
+
+<br>
+
+### file
+
+해당 파일이 어떤 종류의 파일인지를 표시해준다.
+
+```shell
+$ file /etc/systemd/system.conf		-> system.conf는 텍스트 파일이므로 아스키 파일로 표시됨
+$ file /bin/gzip		-> gzip은 실행 파일이므로 'ELF 64-bit LSB executable'파일로 표시됨
+```
+
+<br>
+
+<br>
+
+### clear
+
+현재 사용 중인 터미널 화면을 지워줌
+
+```shell
+$ clear
+```
+
