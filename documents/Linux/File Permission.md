@@ -12,7 +12,7 @@ $ ls -l sample.txt
 -rw-r--r-- 1 root root 0 7월 15 16:11 sample.txt
 ```
 
-![File Permission1](../img/Linux/File Permission1.PNG)
+![File Permission1](../img/Linux/File_Permission1.PNG)
 
 <br>
 
@@ -32,7 +32,7 @@ $ ls -l sample.txt
 
 sample.txt 파일의 허가권을 다음과 같이 숫자로도 표현 할 수 있다.
 
-![File Permission2](../img/Linux/File Permission2.PNG)
+![File Permission2](../img/Linux/File_Permission2.PNG)
 
 소유자의 허가권인 6이라는 숫자는 이진수 110 이므로 'rw-' 라고 표현 할 수 있고, 그룹의 허가권인 4는 이진수 100 이므로 'r--' 라고 표현 할 수 있다.
 
@@ -54,7 +54,7 @@ sample.txt 파일의 허가권을 다음과 같이 숫자로도 표현 할 수 �
 
 원본에 심볼릭 링크를 생성하면 새로운 inode2 를 만들고, 데이터는 원본 파일과 연결되는 효과를 갖는다. 일반적으로 사용자들이 주로 사용하는 링크는 심볼릭 링크를 사용하며. Windows 의 바로 가기 아이콘도 심볼릭 링크에 해당한다. 심볼릭 링크를 생성하려면 `ln -s 링크대상파일이름 링크파일이름` 을 실행하면 된다.
 
-![File Permission3](../img/Linux/File Permission3.PNG)
+![File Permission3](../img/Linux/File_Permission3.PNG)
 
 *하드 링크와 심볼릭 링크의 비교 그림*
 
