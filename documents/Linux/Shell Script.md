@@ -1,6 +1,6 @@
 # Shell Script
 
-> 우분투에서 사용하는 bash/shell 에 대하여 알아본다.
+> 우분투에서 사용하는 bash/shell 의 기초적인 내용을 알아본다.
 
 <br>
 
@@ -223,7 +223,205 @@ exit 0
 
 ### 반복문
 
+<br>
 
+#### for~in 문
 
+for~in 문은 다음 형식을 보면 변수에 각각의 값을 넣은 후 do 안에 있는 '반복할 문장' 을 실행한다. 그러므로 값의 개수만큼 반복 실행하게 된다.
 
+```sh
+for 변수 in 값1 값2 값3
+do
+	반복할 문장
+done
+```
 
+```sh
+1 #!/bin/sh
+2 hap=0
+3 for i in 1 2 3 4 5 6 7 8 9 10
+4 do
+5 	hap=`expr $hap + $i`
+6 done
+7 echo "1부터 10까지의 합: "$hap
+8 exit 0
+```
+
+![Shell_Script3](../img/Linux/Shell_Script3.PNG)
+
+* 3행: i변수에 1~10까지 반복해 넣으면서 5행을 10회 실행한다.
+  		기존의 for 문과 비슷하게 `for((i=1; i<=10; i++))` 로 변경해서 사용할 수 있다. (변경할 때 괄호가 2		개인 것에 주의한다.) 또 `sep` 명령을 사용할 수도 있다. 예를 들어 `seq 1 10` 은 1에서 10까지 숫자를 돌		려준다.
+
+<br>
+
+#### while 문
+
+while 문은 조건식이 참인 동안에 계속 반복하는 특성을 갖는다.
+
+```sh
+1 #!/bin/sh
+2 hap=0
+3 i=1
+4 while [ $i -le 10 ]
+5 do
+6 	hap=`expr $hap + $i`
+7 	i=`expr $i + 1`
+8 done
+9 echo "1부터 10까지의 합: "$hap
+10 exit0
+```
+
+![Shell_Script4](../img/Linux/Shell_Script4.PNG)
+
+<br>
+
+#### until 문
+
+while 문과 용도가 거의 같지만, until 문은 조건식이 참일 때까지( = 거짓인 동안) 계속 반복한다.
+
+<br>
+
+#### break, continue, exit, return
+
+break는 주로 반복문을 종료할 때 사용되며, continue 는 반복문의 조건식으로 돌아가게 한다. 또, exit는 해당 프로그램을 완전히 종료한다. return 은 함수 안에서 사용될 수 있으며 함수를 호출한 곳으로 돌아가게 한다.
+
+<br>
+
+<br>
+
+### 기타 내용
+
+<br>
+
+#### 사용자 정의 함수
+
+사용자가 직접 함수를 작성하고 호출할 수 있다. 형식은 다음과 같다.
+
+```sh
+함수이름 ( ) {		-> 함수를 정의
+	내용들...
+}
+함수이름	-> 함수를 호출
+```
+
+```sh
+1 #!/bin/sh
+2 myFuntion(){
+3	echo "함수 안으로 들어왔음"
+4	return
+5 }
+6 echo "프로그램을 시작합니다."
+7 myFuntion
+8 echo "프로그램을 종료합니다."
+9 exit 0
+```
+
+![Shell_Script5](../img/Linux/Shell_Script5.PNG)
+
+<br>
+
+#### 함수의 파라미터 사용
+
+함수의 파라미터, 즉 인자를 사용하려면 함수를 호출할 때 뒤에 파라미터를 붙여서 호출하며, 함수 안에는 $1, $2, ... 로 사용된다. 형식은 다음과 같다.
+
+```
+함수이름 ( ){		-> 함수를 정의
+	$1, $2 ... 등을 사용
+}
+함수이름 파라미터1 파라미터2 ...	-> 함수를 호출
+```
+
+```sh
+1 #!/bin/sh
+2 hap(){
+3 	echo `expr $1 + $2`
+4 }
+5 echo "10더하기 20을 실행합니다."
+6 hap 10 20
+7 exit 0
+```
+
+![Shell_Script6](../img/Linux/Shell_Script6.PNG)
+
+<br>
+
+#### eval
+
+문자열을 명령문으로 인식하고 실행한다.
+
+```sh
+1 #!/bin/sh
+2 str="ls -l eval.sh"
+3 echo $str
+4 eval $str
+5 exit 0
+```
+
+![Shell_Script7](../img/Linux/Shell_Script7.PNG)
+
+<br>
+
+#### export
+
+외부 변수로 선언한다. 즉, 선언한 변수를 다른 프로그램에서도 사용할 수 있게 한다. 형식은 `export 변수생성` 과 같다.
+
+<br>
+
+#### printf
+
+C 언어의 printf() 함수와 비슷하게 형식을 지정해서 출력할 수 있다.
+
+```sh
+1 #!/bin/sh
+2 val1=100.5
+3 val2="재미있는 리눅스~"	-> 공백이 있으므로 "" 로 묶어줘야 한다.
+4 printf "%5.2f \n\n \t %s \n" $val1 "$val2"	-> $val2 의 경우, 값 중간에 공백이 있으므로, 변수 이름을 "" 로 묶어줘야 오류가 없다.
+```
+
+![Shell_Script8](../img/Linux/Shell_Script8.PNG)
+
+<br>
+
+#### set과 $(명령)
+
+리눅스 명령을 결과로 사용하려면`$(명령)` 형식을 사용해야 한다. 또, 결과를 미리 파라미터로 사용하고자 할 떄는 set 명령과 함께 사용한다.
+
+```sh
+1 #!/bin/sh
+2 echo "오늘 날짜는 $(date) 입니다."
+3 set $(date)
+4 echo "오늘은  $4 요일입니다."
+5 exit 0
+```
+
+![Shell_Script9](../img/Linux/Shell_Script9.PNG)
+
+<br>
+
+#### shift
+
+파러미터 변수를 왼쪽으로 한 단계씩 아래로 쉬프트(이동) 시킨다.
+
+ ```sh
+1 #!/bin/sh
+2 myfunc(){
+3 	str=""
+4 	while [ "$1" != "" ] ; do
+5 		str="$str $1"
+6 		shift
+7 	done
+8 	echo $str
+9 }
+10 myfunc AAA BBB CCC DDD EEE FFF GGG HHH III JJJ KKK
+11 exit 0
+ ```
+
+![Shell_Script10](../img/Linux/Shell_Script10.PNG)
+
+**소스 설명**
+
+* 3행: 결과를 누적할 str변수를 초기화한다.
+* 4행: $1 파라미터가 비어 있지 않은 동안에 반복 실행한다.(처음 $1은 AAA고, 한 번 반복 실행하면 5,6행에 의해 $1이 BBB가 됨).
+* 5행: str변수에 $1을 추가한다.
+* 6행: 전체 파라미터를 왼쪽으로 쉬프트시킨다. 즉, $2 -> $1, $3 -> $2, $4 -> $3, ... 의 형태로 작업이 일어난다.
+* 8행: while문이 끝나면 누적한 str변수를 출력한다.
