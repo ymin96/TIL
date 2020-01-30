@@ -84,11 +84,10 @@ mkfs.ext4 /dev/myVG/myLG3
 
 ![LVM5](../img/Linux/LVM5.PNG)
 
-마지막으로 컴퓨터로 켤 때 언제든지 /dev/myVG/myLG1~3 장치가 /lvm1~3에 마운트되도록 설정한다. /etc/fstab 파일을 vi 에디터나 gedit으로 열어서 맨 아래 부분에 다음을 추가하고 재부팅 하면 된다.
+마지막으로 컴퓨터로 켤 때 언제든지 /dev/myVG/myLG1&#126;3 장치가 /lvm1&#126;3에 마운트되도록 설정한다. /etc/fstab 파일을 vi 에디터나 gedit으로 열어서 맨 아래 부분에 다음을 추가하고 재부팅 하면 된다.
 
 ```
 /dev/myVG/myLG1		/lvm1		ext4		0		0
 /dev/myVG/myLG2		/lvm2		ext4		0		0
 /dev/myVG/myLG3		/lvm3		ext4		0		0
 ```
-
