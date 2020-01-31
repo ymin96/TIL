@@ -205,8 +205,8 @@ ftp		IN		A		192.168.111.200
 www		IN		CNAME	webserver.example.com.
 
 webserver	100		IN		A		125.209.222.142
-			200		IN		A		120.50.132.112
-			300		IN		A		119.205.194.11
+		200		IN		A		120.50.132.112
+		300		IN		A		119.205.194.11
 ```
 
 변경 사항을 적용하기 위해서 `systemctl restart bind9` 명령을 입력해 네임 서버를 다시 가동한다.
