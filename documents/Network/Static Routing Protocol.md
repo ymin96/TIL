@@ -21,7 +21,7 @@
 
 Stub 네트워크란 오직 하나의 경로만을 통해서 외부 망과 연결된 네트워크를 의미한다. 밑의 그림에서 B 라우터는 stub 네트워크 상에 있다. 즉 B 라우터는 오직 A 라우터를 통해서만 외부 네트워크로 연결이 되어 있기 때문이다. 
 
-![1](../img/Network/Static Routing Protocol/1.PNG)
+![1](../img/Network/Static_Routing_Protocol/1.PNG)
 
 <br>
 
