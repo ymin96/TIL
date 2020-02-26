@@ -1,4 +1,4 @@
-# TCP basics
+# TCP/IP Protocol
 
 > TCP 소켓의 정확한 이해를 위해 컨트롤의 방법과 범위에 대해 살펴보자.
 
