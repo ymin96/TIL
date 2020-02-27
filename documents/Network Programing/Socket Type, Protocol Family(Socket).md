@@ -6,6 +6,8 @@
 
 ### 소켓의 생성
 
+---
+
 ```c
 #include <sys/socket.h>
 
@@ -16,6 +18,8 @@ int socket(int domain, int type, int protocol);
 * **domain -** 소켓이 사용할 프로토콜 체계(Protocol Family) 정보 전달.
 * **type -** 소켓의 데이터 전송방식에 대한 정보 전달.
 * **protocol -** 두 컴퓨터간 통신에 사용되는 프로토콜 정보 전달.
+
+---
 
 소켓의 생성에 사용되는 socket 함수는 위와같은 형식으로 사용 가능하다.
 

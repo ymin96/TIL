@@ -8,6 +8,8 @@
 
 소켓에 IP와 Port 번호를 할당하는 함수인 bind 함수를 확인해보자.
 
+---
+
 ```c
 #include <sys/socket.h>
 
@@ -18,6 +20,8 @@ int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);
 * **sockfd -** 주소정보를(IP와 PORT를) 할당할 소켓의 파일 디스크립터.
 * **myaddr -** 할당하고자 하는 주소정보를 지니는 구조체 변수의 주소 값.
 * **addrlen -** 두 번째 인자로 전달된 구조체 변수의 길이 정보.
+
+---
 
 위의 함수호출이 성공하면, 첫 번째 인자에 해당하는 소켓에 두 번째 인자로 전달된 주소정보가 할당된다. 그럼 이제 2번 째 인자인 주소정보를 지니는 구조체 변수가 무엇인지 본격적으로 알아보도록 하자. 
 
@@ -195,6 +199,8 @@ in_addr_t inet_addr(const char* string);
 
 이어서 소개하는 inet_aton 함수도 기능상으로는 inet_addr 함수와 동일하다. 즉, 문자열 형태의 IP주소를 32비트 정수, 그것도 네트워크 바이트 순서로 정렬해서 반환한다. 다만 구조체 변수 in_addr를 이용하는 형태라는 점에서 차이를 보인다. 참고로 활용도는 inet_aton 함수가 더 높다.
 
+---
+
 ```c
 #include <arpa/inet.h>
 
@@ -204,6 +210,8 @@ int inet_aton(const char* string, struct in_addr* addr);
 
 * **string -** 변환할 IP 주소 정보를 담고 있는 문자열의 주소 값 전달.
 * **addr -** 변환된 정보를 저장할 in_addr 구조체 변수의 주소 값 전달.
+
+---
 
 마지막으로 위 2 함수와 반대기능을 제공하는 함수를 소개하겠다. 이 함수는 네트워크 바이트 순서로 정렬된 정수형 IP주소 정보를 우리가 눈으로 쉽게 인식할 수 있는 문자열의 형태로 변환해준다.
 

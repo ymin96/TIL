@@ -61,6 +61,8 @@ gethostbyname 함수는 IPv4뿐만 아니라 IPv6까지 지원한다. 때문에 
 
 지금 소개하는 gethostbyaddr 함수는 IP 주소를 이용해서 도메인 정보를 얻을 때 호출하는 함수이다.
 
+---
+
 ```c
 #include <netdb.h>
 
@@ -71,6 +73,8 @@ struct hostent * gethostbyaddr(const char *addr, socklen_t len, int family);
 * **addr -** IP주소를 지니는 in_addr 구조체 변수의 포인터 전달, IPv4 이외의 다양한 정보를 전달받을 수 있도록 일반화하기 위해서 매개변수를 char형 포인터로 선언.
 * **len -** 첫 번째 인자로 전달된 주소정보의 길이, IPv4의 경우 4, IPv6의 경우 16 전달.
 * **family -** 주소체계 정보 전달. IPv4의 경우 AF_INET, IPv6의 경우 AF_INET6 전달.
+
+---
 
 <br>
 

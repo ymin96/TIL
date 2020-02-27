@@ -28,6 +28,8 @@ TCP와 달리 UDP는 서버건 클라이언트건 하나의 소켓만 있으면 
 
 UDP 소켓은 TCP와 달리 연결상태를 유지하지 않으므로 데이터를 전송할 때마다 반드시 목적지의 주소정보를 별도로 추가해야 한다. 주소정보를 써 넣으면서 데이터를 전송할 때 호출하는 UDP 관련함수는 다음과 같다.
 
+---
+
 ```c
 #include <sys/socket.h>
 
@@ -42,9 +44,13 @@ ssize_t sendto(int sock, void *buff, size_t nbytes, int flags,struct sockaddr *t
 * **to -** 목적지 주소정보를 담고 있는 sockaddr 구조체 변수의 주소 값 전달.
 * **addrlen -** 매개변수 to로 전달된 주소 값의 구조체 변수 크기 전달.
 
+---
+
 위 함수가 TCP 기반의 출력함수와 가장 비교되는 것은 목적지 주소정보를 요구하고 있다는 점이다. 그리고 만약에 sendto 함수호출 시까지 소켓에 주소정보가 할당되지 않았다면, sendto 함수가 처음 호출되는 시점에 해당 소켓에 IP와 PORT번호가 자동으로 할당된다.
 
 그럼 이어서 UDP 데이터 수신에 사용되는 함수를 소개하겠다. UDP 데이터는 발신자가 일정치 않기 때문에 발신지의 정보를 얻을 수 있도록 함수가 정의되어 있다.
+
+---
 
 ```c
 #include <sys/socket.h>
@@ -59,6 +65,8 @@ ssize_t recvfrom(int sock, void *buff, size_t nbytes, int flags, struct sockaddr
 * **flags -** 옵션 지정에 사용되는 매개변수, 지정할 옵션이 없다면 0 전달.
 * **from -** 발신지 정보를 채워 넣을 sockaddr 구조체 변수의 주소 값 전달.
 * **addrlen -** 매개변수 from 으로 전달된 주소에 해당하는 구조체 변수의 크기정보를 담고 있는 변수의 주소값 전달.
+
+---
 
 <br>
 
