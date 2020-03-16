@@ -356,11 +356,11 @@ ExecutorService executorService = Executor.newFixedThreadsPool(
 
 스레드풀의 스레드는 기본적으로 데몬 스레드가 아니기 때문에 main 스레드가 종료되더라도 작업을 처리하기 위해 계속 실행 상태로 남아있다. 애플리케이션을 종료하려면 스레드풀을 종료시켜 스레드들이 종료 상태가 되도록 처리해주어야 한다. ExecutorService는 종료와 관련해서 다음 세 개의 메소드를 제공하고 있다.
 
-| 리턴 타입      | 메소드명(매개 변수)                                     | 설명                                                         |
-| -------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| void           | shutdown()                                              | 현재 처리 중인 작업뿐만 아니라 작업 큐에 대기하고 있는 모든 작업을 처리한 뒤에 스레드풀을 종료시킨다. |
-| List<Runnable> | shutdownNow()                                           | 현재 작업 처리 중인 스레드를 interrupt 해서 작업 중지를 시도하고 스레드풀을 종료시킨다. 리턴값은 작업 큐에 있는 미처리된 작업의 목록이다. |
-| boolean        | awaitTermination(<br />long timout,<br />TimeUnit unit) | shutdown() 메소드 호출 이후, 모든 작업 처리를 timeout 시간 내에 완료하면 true를 리턴하고, 완료하지 못하면 작업 처리 중인 스레드를 interrupt하고 false를 리턴한다. |
+| 리턴 타입          | 메소드명(매개 변수)                                     | 설명                                                         |
+| ------------------ | ------------------------------------------------------- | ------------------------------------------------------------ |
+| void               | shutdown()                                              | 현재 처리 중인 작업뿐만 아니라 작업 큐에 대기하고 있는 모든 작업을 처리한 뒤에 스레드풀을 종료시킨다. |
+| List&#60;Runnable> | shutdownNow()                                           | 현재 작업 처리 중인 스레드를 interrupt 해서 작업 중지를 시도하고 스레드풀을 종료시킨다. 리턴값은 작업 큐에 있는 미처리된 작업의 목록이다. |
+| boolean            | awaitTermination(<br />long timout,<br />TimeUnit unit) | shutdown() 메소드 호출 이후, 모든 작업 처리를 timeout 시간 내에 완료하면 true를 리턴하고, 완료하지 못하면 작업 처리 중인 스레드를 interrupt하고 false를 리턴한다. |
 
 <br>
 
@@ -399,10 +399,10 @@ Runnable의 run() 메소드는 리턴값이 없고, Callable의 call() 메소드
 
 작업 처리 요청이란 ExcutorService 의 작업 큐에 Runnable 또는 Callable 객체를 넣는 행위를 말한다. ExecutorService는 작업 처리 요청을 위해 다음 두 가지 종류의 메소드를 제공한다.
 
-| 리턴 타입                               | 메소드명(매개 변수)                                          | 설명                                                         |
-| --------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| void                                    | execute(Runnable command)                                    | -Runnable을 작업 큐에 저장<br />-작업 처리 결과를 받지 못함  |
-| Future<?><br />Future<V><br />Future<V> | submit(Runnable task)<br />submit(Runnable task, V result)<br />submit(Callable<V> task) | -Runnable 또는 Callable을 작업 큐에 저장<br />-리턴된 Future를 통해 작업 처리 결과를 얻을 수 있음 |
+| 리턴 타입                                       | 메소드명(매개 변수)                                          | 설명                                                         |
+| ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| void                                            | execute(Runnable command)                                    | -Runnable을 작업 큐에 저장<br />-작업 처리 결과를 받지 못함  |
+| Future<?><br />Future&#60;V><br />Future&#60;V> | submit(Runnable task)<br />submit(Runnable task, V result)<br />submit(Callable&#60;V> task) | -Runnable 또는 Callable을 작업 큐에 저장<br />-리턴된 Future를 통해 작업 처리 결과를 얻을 수 있음 |
 
 execute()는 작업 처리 도중 예외가 발생하면 스레드가 종료되고 해당 스레드는 스레드풀에서 제거된다. 따라서 스레드풀은 다른 작업 처리를 위해 새로운 스레드를 생성한다. 반면에 submit()은 작업 처리 도중 예외가 발생하더라도 스레드는 종료되지 않고 다음 작업을 위해 재사용된다. 그렇기 때문에 가급적이면 스레드의 오버헤드를 줄이기 위해서 submit()을 사용하는 것이 좋다.
 
@@ -412,9 +412,9 @@ execute()는 작업 처리 도중 예외가 발생하면 스레드가 종료되�
 
 ExecutorService 의 submit() 메소드는 매개값으로 준 Runnable 또는 Callable 작업을 스레드풀의 작업 큐에 저장하고 즉시 Future 객체를 리턴한다.
 
-| 리턴 타입                               | 메소드명(매개 변수)                                          | 설명                                                         |
-| --------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Future<?><br />Future<V><br />Future<V> | submit(Runnable task)<br />submit(Runnable task, V result)<br />submit(Callable<V> task) | -Runnable 또는 Callable을 작업 큐에 저장<br />-리턴된 Future를 통해 작업 처리 결과를 얻을 수 있음 |
+| 리턴 타입                                       | 메소드명(매개 변수)                                          | 설명                                                         |
+| ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Future<?><br />Future&#60;V><br />Future&#60;V> | submit(Runnable task)<br />submit(Runnable task, V result)<br />submit(Callable&#60;V> task) | -Runnable 또는 Callable을 작업 큐에 저장<br />-리턴된 Future를 통해 작업 처리 결과를 얻을 수 있음 |
 
 Future  객체는 작업 결과가 아니라 작업이 완료될까지 기다렸다가(블로킹 되었다가) 최종 결과를 얻는데 사용된다. 그래서 Future를 지연 완료(pending completion) 객체라고 한다. Future 의 get() 메소드를 호출하면 스레드가 작업을 완료할 때까지 블로킹되었다가 작업을 오나료하면 처리 결과를 리턴한다. 다음은 Future가 가지고 있는 get() 메소드를 설명한 표이다.
 
@@ -429,7 +429,7 @@ Future  객체는 작업 결과가 아니라 작업이 완료될까지 기다렸
 | ------------------------------------- | ------------------------------ | ------------------------- |
 | submit(Runnable task)                 | future.get() -> null           | future.get() -> 예외 발생 |
 | submit(Runnable task, Integer result) | future.get() -> int 타입 값    | future.get() -> 예외 발생 |
-| submit(Callable<String> task)         | future.get() -> String 타입 값 | future.get() -> 예외 발생 |
+| submit(Callable&#60;String> task)     | future.get() -> String 타입 값 | future.get() -> 예외 발생 |
 
 Future를 이용한 블로킹 방식의 작업 완료 통보에서 주의할 점은 작업을 처리하는 스레드가 작업을 완료하기 전까지는 get() 메소드가 블로킹되므로 다른 코드를 실행할 수 없다는 점이다. 따라서 get() 메소드를 호출하는 스레드는 새로운 스레드이거나 스레드풀의 또 다른 스레드가 되어야 한다.
 
@@ -541,13 +541,13 @@ class Task implements Runnable{
 
 여러 개의 작업들이 순차적으로 처리될 필요성이 없고, 처리 결과도 순차적으로 이용할 필요가 없다면 작업 처리가 완료된 것부터 결과를 얻어 이용하면 된다. 스레드풀에서 작업 처리가 완료된 것만 통보받는 방법이 있는데, CompletionService를 이용하는 것이다. CompletionService는 처리 완료된 작업을 가져오는 poll()과 take() 메소드를 제공한다.
 
-| 리턴 타입 | 메소드명(매개 변수)                    | 설명                                                         |
-| --------- | -------------------------------------- | ------------------------------------------------------------ |
-| Future<V> | poll()                                 | 완료된 작업의 Future를 가져옴.<br />완료된 작업이 없다면 즉시 null을 리턴함 |
-| Future<V> | poll(long timeout,<br />TimeUnit unit) | 완료된 작업의 Future를 가져옴.<br />완료된 작업이 없다면 timeout까지 블로킹됨 |
-| Future<V> | take()                                 | 완료된 작업의 Future을 가져옴<br />완료된 작업이 없다면 있을 때까지 블로킹 |
-| Future<V> | submit(Callable<V> task)               | 스레드풀에 Callable 작업 처리 요청                           |
-| Future<V> | submit(Runnable task, V result)        | 스레드풀에 Runnable 작업 처리 요청                           |
+| 리턴 타입     | 메소드명(매개 변수)                    | 설명                                                         |
+| ------------- | -------------------------------------- | ------------------------------------------------------------ |
+| Future&#60;V> | poll()                                 | 완료된 작업의 Future를 가져옴.<br />완료된 작업이 없다면 즉시 null을 리턴함 |
+| Future&#60;V> | poll(long timeout,<br />TimeUnit unit) | 완료된 작업의 Future를 가져옴.<br />완료된 작업이 없다면 timeout까지 블로킹됨 |
+| Future&#60;V> | take()                                 | 완료된 작업의 Future을 가져옴<br />완료된 작업이 없다면 있을 때까지 블로킹 |
+| Future&#60;V> | submit(Callable&#60;V> task)           | 스레드풀에 Callable 작업 처리 요청                           |
+| Future&#60;V> | submit(Runnable task, V result)        | 스레드풀에 Runnable 작업 처리 요청                           |
 
 CompletionService 구현 클래스는 ExecutorCompletionService<V> 이다. 객체를 생성할 때 생성자 매개값으로 ExecutorService를 제공하면 된다.
 
