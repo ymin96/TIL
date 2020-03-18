@@ -94,3 +94,105 @@ public interface MyFuntionlInterface{
 
 ### 클래스 멤버와 로컬 변수 사용
 
+람다식의 실행 블록에는 클래스의 멤버 (필드와 메소드) 및 로컬 변수를 사용할 수 있다. 클래스의 멤버는 제약 사항 없이 사용 가능하지만, 로컬 변수는 제약 사항이 따른다.
+
+<br>
+
+#### 클래스의 멤버 사용
+
+람다식 실행 블록에는 클래스의 멤버인 필드와 메소드를 제약 사항 없이 사용할 수 있다. 하지만 this 키워드 사용엔 주의가 따른다. 일반적으로 익명 객체 내부에서 this는 익명 객체의 참조이지만, 람다식에서 this 는 람다식을 실행한 객체의 참조이다. 
+
+<br>
+
+#### 로컬 변수 사용
+
+람다식에서 메소드의 매개 변수 또는 로컬 변수를 사용하면 이 두 변수는 final 특성을 가져야 한다. 따라서 매개 변수 또는 로컬 변수를 람다식에서 읽는 것은 허용되지만, 람다식 내부 또는 외부에서 변경할 수 없다. 
+
+<br>
+
+<br>
+
+### 표준 API의 함수적 인터페이스
+
+자바 8부터는 빈번하게 사용되는 함수적 인터페이스(functional interface) 는 java.util.function 표준 API 패키지로 제공한다. 이 패키지에서 제공하는 함수적 인터페이스의 목적은 메소드 또는 생성자의 매개 타입으로 사용되어 람다식을 대입할 수 있도록 하기 위해서이다. 함수적 인터페이스는 크게 Consumer, Supplier, Function, Operator, Predicate 로 구분된다. 구분 기준은 인터페이스에 선언된 추상 메소드의 매개값과 리턴값의 유무이다.
+
+| 종류      | 추상 메소드 타입                                             |
+| --------- | ------------------------------------------------------------ |
+| Consumer  | - 매개값은 있고, 리턴값은 없음                               |
+| Supplier  | - 매개값은 없고, 리턴값은 있음                               |
+| Functoin  | - 매개값도 있고, 리턴값도 있음<br />- 주로 매개값을 리턴값으로 매핑(타입 변환) |
+| Operator  | - 매개값도 있고, 리턴값도 있음<br />- 주로 매개값을 연산하고 결과를 리턴 |
+| Predicate | - 매개값은 있고, 리턴 타입은 boolean<br />- 매개값을 조사해서 true/false 를 리턴 |
+
+<br>
+
+#### Comsumer 함수적 인터페이스
+
+Consumer 함수적 인터페이스의 특징은 리턴값이 없는 accept( ) 메소드를 가지고 있다. accept( ) 메소드는 단지 매개값을 소비하는 역할만 한다. 여기서 소비한다는 말은 사용만 할 뿐 리턴값이 없다는 뜻이다.
+
+매개 변수의 타입과 수에 따라서 아래와 같은 Consumer 들이 있다.
+
+| 인터페이스명             | 추상 메소드                    | 설명                           |
+| ------------------------ | ------------------------------ | ------------------------------ |
+| Consumer&#60;T>          | void accept(T t)               | 객체 T를 받아 소비             |
+| BiConsumer&#60;T,U>      | void accept(T t, U u)          | 객체 T와 U를 받아 소비         |
+| DoubleConsumer           | void accept(double value)      | double 값을 받아 소비          |
+| IntConsumer              | void accept(int value)         | int 값을 받아 소비             |
+| LongConsumer             | void accept(long value)        | long 값을 받아 소비            |
+| ObjDoubleConsumer&#60;T> | void accept(T t, double value) | 객체 T와 double 값을 받아 소비 |
+| ObjIntConsumer&#60;T>    | void accept(T t, int value)    | 객체 T와 int 값을 받아 소비    |
+| ObjLongConsumer&#60;T>   | void accept(T t, long value)   | 객체 T와 long 값을 받아 소비   |
+
+Consumer&#60;T> 인터페이스를 타겟 타입으로 하는 람다식은 다음과 같이 작성할 수 있다.
+
+```java
+Consumer<String> consumer = t -> {t를 소비하는 실행문; };
+```
+
+<br>
+
+#### Supplier 함수적 인터페이스
+
+Supplier 함수적 인터페이스의 특징은 매개 변수가 없고 리턴값이 있는 getXXX{} 메소드를 가지고 있다. 이 메소드드들은 실행 후 호출한 곳으로 데이터를 리턴(공급) 하는 역할을 한다.
+
+리턴 타입에 따라서 아래와 같은 Supplier 함수적 인터페이스들이 있다.
+
+| 인터페이스명    | 추상 메소드             | 설명              |
+| --------------- | ----------------------- | ----------------- |
+| Supplier&#60;T> | T get( )                | T 객체를 리턴     |
+| BooleanSupplier | boolean getAsBoolean( ) | boolean 값을 리턴 |
+| DoubleSupplier  | double getAsDouble( )   | double 값을 리턴  |
+| IntSupplier     | int getAsInt( )         | int 값을 리턴     |
+| LongSupplier    | long getAsLong( )       | long 값을 리턴    |
+
+Supplier&#60;T> 인터페이스를 타겟 타입으로 하는 람다식은 다음과 같이 작성할 수 있다.
+
+```java
+Supplier<String> supplier = () -> {...; return "문자열"; };
+```
+
+<br>
+
+#### Function 함수적 인터페이스
+
+Function 함수적 인터페이스의 특징은 매개값과 리턴값이 있는 applyXXX( ) 메소드를 가지고 있다. 이 메소드들은 매개값을 리턴값으로 매핑(타입 변환)하는 역할을 한다.
+
+매개 변수 타입과 리턴 타입에 따라 아래와 같은 Function 함수적 인터페이스들이 있다. 
+
+| 인터페이스명                | 추상 메소드                      | 설명                       |
+| --------------------------- | -------------------------------- | -------------------------- |
+| Function&#60;T,R>           | R apply(T t)                     | 객체 T를 객체 R로 매핑     |
+| BiFunction&#60;T,U,R>       | R apply(T t,U u)                 | 객체 T와 U를 객체 R로 매핑 |
+| DoubleFunction&#60;R>       | R apply(double value)            | double을 객체 R로 매핑     |
+| IntFunction&#60;R>          | R apply(int value)               | int를 객체 R로 매핑        |
+| IntToDoubleFunction         | double applyAsDouble(int value)  | int를 double로 매핑        |
+| IntToLongFunction           | long applyAsLong(int value)      | int를 long으로 매핑        |
+| LongToDoubleFunction        | double applyAsDouble(long value) | long을 double로 매핑       |
+| LongToIntFunction           | int applyAsInt(long value)       | long을 int로 매핑          |
+| ToDoubleBiFunction&#60;T,U> | double applyAsDouble(T t,U u)    | 객체 T와 U를 double로 매핑 |
+| ToDoubleFunction&#60;T>     | double applyAsDoule(T t)         | 객체 T를 double로 매핑     |
+| ToIntBiFunction&#60;T,U>    | int applyAsInt(T t,U u)          | 객체 T와 U를 int로 매핑    |
+| ToIntFunction&#60;T>        | int applyAsInt(T t)              | 객체 T를 int로 매핑        |
+| ToLongBiFunction&#60;T,U>   | long applyAsLong(T t,U u)        | 객체 T와 U를 long으로 매핑 |
+| ToLongFunction&#60;T>       | long applyAsLong(T t)            | 객체 T를 long으로 매핑     |
+
