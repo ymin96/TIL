@@ -196,3 +196,116 @@ Function 함수적 인터페이스의 특징은 매개값과 리턴값이 있는
 | ToLongBiFunction&#60;T,U>   | long applyAsLong(T t,U u)        | 객체 T와 U를 long으로 매핑 |
 | ToLongFunction&#60;T>       | long applyAsLong(T t)            | 객체 T를 long으로 매핑     |
 
+Function&#60;T,R> 인터페이스를 타겟 타입으로 하는 람다식은 다음과 같이 작성할 수 있다.
+
+```java
+Function<Student, String> function = t -> { return t.getName(); };
+또는
+Function<Student, String> function = t -> t.getName(); 
+```
+
+<br>
+
+#### Operator 함수적 인터페이스
+
+Operator 함수적 인터페이스는 Function과 동일하게 매개 변수와 리턴값이 있는 applyXXX() 메소드를 가지고 있다. 하지만 이 메소드들은 매개값을 리턴값으로 매핑 ( 타입 변환 ) 하는 역할보다는 매개값을 이용해서 연산을 수행한 후 동일한 타입으로 리턴값을 제공하는 역할을 한다.
+
+매개 변수의 타입과 수에 따라서 아래와 같은 Operator 함수적 인터페이스가 있다.
+
+| 인터페이스명          | 추상 메소드                              | 설명                    |
+| --------------------- | ---------------------------------------- | ----------------------- |
+| BinaryOperator&#60;T> | BiFunction&#60;T,U,R> 의 하위 인터페이스 | T와 U를 연산한 후 R리턴 |
+| UnaryOperator&#60;T>  | Function&#60;T,R> 의 하위 인터페이스     | T를 연산한 후 R 리턴    |
+| DoubleBinaryOperator  | double applyAsDouble(double,double)      | 두 개의 double 연산     |
+| DoubleUnaryOperator   | double applyAsDouble(doubl)              | 한 개의 double 연산     |
+| IntBinaryOperator     | int applyAsInt(int, int)                 | 두 개의 int 연산        |
+| IntUnaryOperator      | int applyAsInt(int)                      | 한 개의 int 연산        |
+| LongBinaryOperator    | long applyAslong(long, long)             | 두 개의 long 연산       |
+| LongUnaryOperator     | long applyAsLong(long)                   | 한 개의 long 연산       |
+
+IntBinaryOperator 인터페이스를 타겟 타입으로 하는 람다식은 다음과 같이 작성할 수 있다.
+
+```java
+IntBinaryOperator operator = (a,b) -> { ...; return int값; }
+```
+
+<br>
+
+#### Predicate 함수적 인터페이스
+
+Predicate 함수적 인터페이스는 매개 변수와 boolean 리턴값이 있는 testXXX( ) 메소드를 가지고 있다. 이 메소드들은 매개값을 조사해서 true 또는 false를 리턴하는 역할을 한다.
+
+매개 변수 타입과 수에 따라서 아래와 같은 Predicate 함수적 인터페이스들이 있다.
+
+| 인터페이스명         | 추상 메소드                | 설명                   |
+| -------------------- | -------------------------- | ---------------------- |
+| Predicate&#60;T>     | boolean test(T t)          | 객체 T를 조사          |
+| DoublePredicate      | boolean test(double value) | double 값을 조사       |
+| IntPredicate         | boolean test(int value)    | int 값을 조사          |
+| LongPredicate        | boolean test(long value)   | long 값을 조사         |
+| BiPredicate&#60;T,U> | boolean test(T t, U u)     | 객체 T와 U를 비교 조사 |
+
+Predicate&#60;T> 인터페이스를 타겟 타입으로 하는 람다식은 다음과 같이 작성할 수 있다.
+
+```java
+Predicate<Student> predicate = t -> { return t.getSex().equals("남자");};
+또는
+Predicate<Student> predicate = t -> t.getSex().equals("남자");
+```
+
+<br>
+
+<br>
+
+### 메소드 참조
+
+메소드 참조(Method References)는 말 그대로 메소드를 참조해서 매개 변수의 정보 및 리턴 타입을 알아내어, 람다식에서 불필요한 매개 변수를 제거하는 것이 목적이다.
+
+<br>
+
+#### 정적 메소드와 인스턴스 메소드 참조
+
+정적(static) 메소드를 참조할 경우에는 클래스 이름 뒤에 :: 기호를 붙이고 정적 메소드 이름을 기술하면 된다.
+
+```java
+클래스 :: 메소드	
+```
+
+인스턴스 메소드일 경우에는 먼저 객체를 생성한 다음 참조 변수 뒤에 :: 기호를 붙이고 인스턴스 메소드 이름을 기술하면 된다.
+
+```java
+참조변수 :: 메소드
+```
+
+<br>
+
+#### 매개 변수의 메소드 참조
+
+메소드는 람다식 외부의 클래스 멤버일 수도 있고, 람다식에서 제공되는 매개 변수의 멤버일 수도 있다. 다음과 같이 람다식에서 제공되는 a 매개 변수의 메소드를 호출해서 b 매개 변수를 매개값으로 사용하는 경우도 있다.
+
+```java
+(a,b) -> {a.instanceMethod(b);}
+```
+
+이것을 메소드 참조로 표현하면 다음과 같다. a의 클래스 이름 뒤에 :: 기호를 붙이고 메소드 이름을 기술하면 된다. 작성 방법은 정적 메소드 참조와 동일하지만, a의 인스턴스 메소드가 참조되므로 전혀 다른 코드가 된다.
+
+```java
+클래스 :: instanceMethod
+```
+
+<br>
+
+#### 생성자 참조
+
+메소드 참조(method references) 는 생성자 참조도 포함한다. 생성자를 참조한다는 것은 객체 생성을 의미한다. 단순히 메소드 호출로 구성된 람다식을 메소드 참조로 대치할 수 있듯이, 단순히 객체를 생성하고 리턴하도록 구성된 람다식은 생성자 참조로 대치할 수 있다. 다음 코드를 보면 람다식은 단순히 객체 생성 후 리턴만 한다.
+
+```java
+(a,b) -> { return new 클래스(a,b); }
+```
+
+이 경우, 생성자 참조로 표현하면 다음과 같다. 클래스 이름 뒤에 :: 기호를 붙이고 new 연산자를 기술하면 된다. 생성자가 오버로딩되어 여러 개가 있을 경우, 컴파일러는 인터페이스의 추상 메소드와 동일한 매개 변수 타입과 개수를 가지고 있는 생성자를 찾아 실행한다.
+
+```java
+클래스 :: new
+```
+
