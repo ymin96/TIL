@@ -143,6 +143,8 @@ flatMapXXX( ) 메소드의 종류는 다음과 같다.
 
 <br>
 
+<br>
+
 #### mapXXX( ) 메소드
 
 mapXXX( ) 메소드는 요소를 대체하는 요소로 구성된 새로운 스트림을 리턴한다. 다음 그림을 보면 이해가 쉽다.
@@ -172,6 +174,8 @@ mapXXX( ) 메소드의 종류는 다음과 같다.
 
 <br>
 
+<br>
+
 ### asDoubleStream( ), asLongStream( ), boxed( ) 메소드
 
 asDoubleStream( ) 메소드는 IntStream의 int 요소 또는 LongStream의 long 요소를 double 요소로 타입 변환해서 DoubleStream을 생성한다. boxed( ) 메소드는 int, long, double 요소를 Integer, Long, Double 요소로 박싱해서 Stream을 생성한다.
@@ -181,6 +185,8 @@ asDoubleStream( ) 메소드는 IntStream의 int 요소 또는 LongStream의 long
 | DoubleStream                                                 | asDoubleStream( ) | int > double<br />long > double                     |
 | LongStream                                                   | asLongStream( )   | int > long                                          |
 | Stream&#60;Integer><br />Stream&#60;Long><br />Stream&#60;Double> | boxed( )          | int > Integer<br />long > Long<br />double > Double |
+
+<br>
 
 <br>
 
@@ -198,9 +204,13 @@ asDoubleStream( ) 메소드는 IntStream의 int 요소 또는 LongStream의 long
 
 <br>
 
+<br>
+
 ### 루핑(peek( ), forEach( ))
 
 루핑(looping)은 요소 전체를 반복하는 것을 말한다. 루핑하는 메소드에는 peek( ), forEach( )가 있다. 이 두 메소드는 루핑한다는 기능에서는 동일하지만, 동작 방식은 다르다. peek( )는 중간 처리 메소드이고, forEach( )는 최종 처리 메소드이다.
+
+<br>
 
 <br>
 
@@ -214,6 +224,8 @@ asDoubleStream( ) 메소드는 IntStream의 int 요소 또는 LongStream의 long
 | boolean   | allMatch(IntPredicate predicate)<br />anyMatch(IntPredicate predicate)<br />noneMatch(IntPredicate predicate) | IntStream       |
 | boolean   | allMatch(LongPredicate predicate)<br />anyMatch(LongPredicate predicate)<br />noneMatch(LongPredicate predicate) | LongStream      |
 | boolean   | allMatch(DoublePredicate predicate)<br />anyMatch(DoublePredicate predicate)<br />noneMatch(DoublePredicate predicate) | DoubleStream    |
+
+<br>
 
 <br>
 
@@ -244,6 +256,8 @@ Optional, OptinalDouble, OptionalInt, OptionalLong 클래스들은 저장하는 
 
 <br>
 
+<br>
+
 ### 커스텀 집계(reduce( ))
 
 스트림은 기본 집계 메소드인 sum( ), average( ), count( ), max( ), min( )을 제공하지만, 프로그램화해서 다양한 집계 결과물을 만들 수 있도록 reduce( ) 메소드도 제공한다.
@@ -267,3 +281,32 @@ int sum = studentList.stream()
 	.reduce(0, (a,b) -> a+b)
 ```
 
+<br>
+
+<br>
+
+### 수집(collect( ))
+
+ 스트림은 요소들을 필터링 또는 매핑한 수 요소들을 수집하는 최종 처리 메소드인 collect( )를 제공하고 있다. 이 메소드를 이용하면 필요한 요소만 컬렉션으로 담을 수 있고, 요소들을 그룹핑한 후 집계(리덕션) 할 수 있다.
+
+<br>
+
+#### 필터링한 요소 수집
+
+Stream의 collect(Collector&#60;T,A,R> collector) 메소드는 필터링 또는 매핑되니 요소들을 새로운 컬렉션에 수집하고, 이 컬렉션을 리턴한다.
+
+| 리턴 타입 | 메소드(매개 변수)                       | 인터페이스 |
+| --------- | --------------------------------------- | ---------- |
+| R         | collect(Collector&#60;T,A,R> collector) | Stream     |
+
+매개값인 Collector(수집기)는 어떤 요소를 어떤 컬렉션에 수집한 것인지를 결정한다. Collector의 타입 파라미터 T는 요소이고, A는 누적기(accumulator)이다. 그리고 R은 요소가 저장될 컬렉션이다. 풀어서 해석하면 T요소를 A누적기가 R에 저장한다는 의미이다. Collector의 구현 객체는 다음과 같이 Collectors 클래스의 다양한 정적 메소드를 이용해서 얻을 수 있다. 
+
+| 리턴 타입                                        | Collectors의 정적 메소드                                     | 설명                                                         |
+| ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Collector&#60;T, ?, List&#60;T>>                 | toList( )                                                    | T를 List에 저장                                              |
+| Collector&#60;T, ?, Set&#60;T>>                  | toSet( )                                                     | T를 Set에 저장                                               |
+| Collector&#60;T, ?, Collection&#60;T>>           | toCollection(<br />Supplier&#60;Collection&#60;T>><br />)    | T를 Supplier가 제공한 Collection에 저장                      |
+| Collector&#60;T, ?, Map&#60;K,U>>                | toMap(<br />Function&#60;T,K> keyMapper,<br />Function&#60;T,U> valueMapper) | T를 K와 U로 매핑해서 K를 키로, U를 값으로 Map에 저장         |
+| Collector&#60;T, ?,<br />ConcurrentMap&#60;K,U>> | toConcurrentMap(<br />Function&#60;T,K> keyMapper,<br />Function&#60;T,U> valueMapper) | T를 K와 U로 매핑해서 K를 키로, U를 값으로 ConcurrentMap에 저장 |
+
+리턴값인 Collector를 보면 A(누적기)가 ?로 되어 있는데, 이것은 Collector가 R(컬렉션)에 T(요소)를 저장하는 방법을 알고 있어 A(누적기)가 필요 없기 때문이다. Map과 ConcurrentMap의 차이점은 Map은 스레드에 안전하지 않고, ConcurrentMap은 스레드에 안전하다. 
