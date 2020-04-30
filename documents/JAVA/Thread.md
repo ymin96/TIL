@@ -77,7 +77,7 @@ public class WorkerThread extends Thread{
 Thread thread = new WorkerThread
 ```
 
-코드를 절약하기 위해 다음과 같이 Thread 익명 개체로 작업 스데르 객체를 생성할 수도 있다.
+코드를 절약하기 위해 다음과 같이 Thread 익명 개체로 작업 스레드 객체를 생성할 수도 있다.
 
 ```java
 Thread thread = new Thread(){
