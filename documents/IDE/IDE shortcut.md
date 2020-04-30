@@ -36,3 +36,5 @@
 * 행 단위 주석: Ctrl + /
 * 범위 주석 처리/해제: Ctrl + Shift + /
 * 자동 완성: Ctrl + Space
+* 깃 커밋: Ctrl + k
+* 깃 푸시: Ctrl + Shift + k
